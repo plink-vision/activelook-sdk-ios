@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Unreleased
+
+### Features
+
+- Add arc graphics command (0x3C)
+
 ## Version 4.5.5
 
 ### Fixes

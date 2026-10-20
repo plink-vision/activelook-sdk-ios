@@ -45,6 +45,7 @@ internal enum CommandID: UInt8 {
     case txt = 0x37
     case polyline = 0x38
     case holdFlush = 0x39
+    case arc = 0x3C
 
     case widget = 0x3A
     
