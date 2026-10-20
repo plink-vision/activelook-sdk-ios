@@ -831,7 +831,30 @@ public class Glasses {
         data.append(holdFlush.rawValue)
         sendCommand(id: .holdFlush, withData: data)
     }
-    
+
+    /// Draw an arc circle at the corresponding coordinates.
+    /// Angles are in degrees, begin at 3 o'clock, and increase clockwise.
+    /// Requires firmware 4.12.0 or later.
+    /// - Parameters:
+    ///   - x: The x coordinate of the center of the arc
+    ///   - y: The y coordinate of the center of the arc
+    ///   - radius: The arc radius in pixels
+    ///   - angleStart: The start angle in degrees
+    ///   - angleEnd: The end angle in degrees
+    ///   - thickness: The thickness of the arc in pixels
+    public func arc(x: Int16, y: Int16, radius: UInt8, angleStart: Int16, angleEnd: Int16, thickness: UInt8) {
+        var data: [UInt8] = []
+
+        data.append(contentsOf: x.asUInt8Array)
+        data.append(contentsOf: y.asUInt8Array)
+        data.append(radius)
+        data.append(contentsOf: angleStart.asUInt8Array)
+        data.append(contentsOf: angleEnd.asUInt8Array)
+        data.append(thickness)
+
+        sendCommand(id: .arc, withData: data)
+    }
+
     // MARK: - Bitmap commands
 
     /// List all images saved on the device.
