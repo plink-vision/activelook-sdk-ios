@@ -33,10 +33,10 @@ public class LayoutParameters {
     /// The height of the layout area
     public let height: UInt8
 
-    /// The foreground color of the layout area from 0 to 15
+    /// The foreground color of the layout area from 0 to 15, or from 0 to 255 when saved with layoutSaveInColor
     public let foregroundColor: UInt8
 
-    /// The background color of the layout area from 0 to 15
+    /// The background color of the layout area from 0 to 15, or from 0 to 255 when saved with layoutSaveInColor
     public let backgroundColor: UInt8
 
     /// The font used to draw the text value of the layout

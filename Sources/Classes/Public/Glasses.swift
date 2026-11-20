@@ -663,8 +663,22 @@ public class Glasses {
     
     /// Sets the grey level used to draw the next graphical element
     /// - Parameter level: The grey level to be used between 0 and 15
+    public func grayscale(level: UInt8) {
+        sendCommand(id: .grayscale, withValue: level)
+    }
+
+    /// Sets the grey level used to draw the next graphical element
+    /// - Parameter level: The grey level to be used between 0 and 15
+    @available(*, deprecated, renamed: "grayscale(level:)", message: "use grayscale instead")
     public func color(level: UInt8) {
-        sendCommand(id: .color, withValue: level)
+        grayscale(level: level)
+    }
+
+    /// Sets the red-green color used to draw the next graphical element
+    /// Only available on color glasses.
+    /// - Parameter value: The red-green color to be used between 0 and 255
+    public func color(value: UInt8) {
+        sendCommand(id: .color, withValue: value)
     }
     
     /// Set a pixel on at the corresponding coordinates
@@ -783,6 +797,28 @@ public class Glasses {
         data.append(contentsOf: string.asNullTerminatedUInt8Array)
         
         sendCommand(id: .txt, withData: data)
+    }
+
+    /// Write the specified string at the specified coordinates, with rotation, font size and red-green color
+    /// Only available on color glasses.
+    /// - Parameters:
+    ///   - x: The x coordinate of the start of the string
+    ///   - y: The y coordinate of the start of the string
+    ///   - rotation: The rotation of the drawn text
+    ///   - font: The id of the font used to draw the string
+    ///   - color: The red-green color used to draw the string, between 0 and 255
+    ///   - string: The string to draw
+    public func txtColor(x: Int16, y: Int16, rotation: TextRotation, font: UInt8, color: UInt8, string: String) {
+        var data: [UInt8] = []
+
+        data.append(contentsOf: x.asUInt8Array)
+        data.append(contentsOf: y.asUInt8Array)
+        data.append(rotation.rawValue)
+        data.append(font)
+        data.append(color)
+        data.append(contentsOf: string.asNullTerminatedUInt8Array)
+
+        sendCommand(id: .txtColor, withData: data)
     }
 
 
@@ -1178,6 +1214,13 @@ public class Glasses {
     /// - Parameter layout: The parameters of the layout to save
     public func layoutSave(parameters: LayoutParameters) {
         sendCommand(id: .layoutSave, withData: parameters.toCommandData())
+    }
+
+    /// Save a new layout according to the specified layout parameters, using red-green color values.
+    /// Only available on color glasses.
+    /// - Parameter parameters: The parameters of the layout to save
+    public func layoutSaveInColor(parameters: LayoutParameters) {
+        sendCommand(id: .layoutSaveInColor, withData: parameters.toCommandData())
     }
 
     /// Delete the specified layout
