@@ -5,6 +5,14 @@
 ### Features
 
 - Add arc graphics command (0x3C)
+- Add color graphics command (0x3D), color glasses only
+- Add txtColor graphics command (0x3E), color glasses only
+- Add layoutSaveInColor layout command (0x6B), color glasses only
+- Add grayscale graphics command (0x30), replacing `color(level:)`
+
+### Deprecations
+
+- `color(level:)`: use `grayscale(level:)` instead, still sends 0x30
 
 ### Breaking Change
 

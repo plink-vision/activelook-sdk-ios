@@ -35,7 +35,7 @@ internal enum CommandID: UInt8 {
     case gesture = 0x21
     case als = 0x22
 
-    case color = 0x30
+    case grayscale = 0x30
     case point = 0x31
     case line = 0x32
     case rect = 0x33
@@ -46,6 +46,8 @@ internal enum CommandID: UInt8 {
     case polyline = 0x38
     case holdFlush = 0x39
     case arc = 0x3C
+    case color = 0x3D
+    case txtColor = 0x3E
 
     case widget = 0x3A
     
@@ -75,6 +77,7 @@ internal enum CommandID: UInt8 {
     case layoutClearExtended = 0x68
     case layoutClearAndDisplay = 0x69
     case layoutClearAndDisplayExtended = 0x6A
+    case layoutSaveInColor = 0x6B
 
     case gaugeDisplay = 0x70
     case gaugeSave = 0x71
